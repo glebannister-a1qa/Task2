@@ -7,9 +7,9 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            for(int i = 0; i < UniqueNamesWithOutCollections().Length; i++)
+            for(int i = 0; i < UniqueNamesWithoutCollections().Length; i++)
             {
-                Console.WriteLine(UniqueNamesWithOutCollections()[i]);
+                Console.WriteLine(UniqueNamesWithoutCollections()[i]);
              } 
             ArrayList arr1 = new ArrayList();
             ArrayList arr2 = new ArrayList();
@@ -19,12 +19,12 @@ namespace Task2
             }
 
         }
-        public static string[] UniqueNamesWithOutCollections()
+        public static string[] UniqueNamesWithoutCollections()
         {
             int count = 0;
-            string[] array1 = { "Alex", "Dima", "Kate", "Galina", "Ivan" };
-            string[] array2 = { "Dima", "Ivan", "Kate" };
             string[] result = new string[count];
+            string[] array1 = { "Alex", "Dima", "Kate", "Galina", "Ivan" };
+            string[] array2 = { "Dima", "Ivan", "Kate" }; 
             Boolean isElementExists;
             for (int i = 0; i < array1.Length; i++)
             {
@@ -39,12 +39,12 @@ namespace Task2
                 if (isElementExists == false)
                 {                                        
                     count++;
-                    Array.Resize(ref result, count);
-                    Console.WriteLine(result.Length);
-                    Console.WriteLine(result[i]);
-                    result[count] = array1[i];
-                }
-
+                    Array.Resize(ref result, count); 
+                    for (int a = 0; a < result.Length; a++)
+                    {
+                        result[a] = array1[i];
+                    }
+                }              
             }
             return result;
         }
