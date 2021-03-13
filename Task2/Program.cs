@@ -7,48 +7,48 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            for(int i = 0; i < UniqueNamesWithOutCollections().Length; i++)
+            string[] array1 = { "Alex", "Dima", "Kate", "Galina", "Ivan" };
+            string[] array2 = { "Dima", "Ivan", "Kate" };
+            foreach (string element in UniqueNamesWithoutCollections(array1, array2))
             {
-                Console.WriteLine(UniqueNamesWithOutCollections()[i]);
-             } 
+                Console.WriteLine(element);
+            } 
             ArrayList arr1 = new ArrayList();
             ArrayList arr2 = new ArrayList();
+            arr1.AddRange(new string [] { "Alex", "Dima", "Kate", "Galina", "Ivan" });
+            arr2.AddRange(new string[] { "Dima", "Ivan", "Kate" });
             foreach(string element in UniqueNamesWithCollections(arr1, arr2))
             {
                 Console.WriteLine(element);
             }
-
         }
-        public static string[] UniqueNamesWithOutCollections()
+        public static string[] UniqueNamesWithoutCollections(string [] names1, string[] names2)
         {
             int count = 0;
-            string[] array1 = { "Alex", "Dima", "Kate", "Galina", "Ivan" };
-            string[] array2 = { "Dima", "Ivan", "Kate" };
             string[] result = new string[count];
             Boolean isElementExists;
-            for (int i = 0; i < array1.Length; i++)
+            foreach (string elementOfArr1 in names1)
             {
                 isElementExists = false;
-                for (int j = 0; j < array2.Length; j++)
+                foreach (string elementOfArr2 in names2)
                 {
-                    if (array1[i] == array2[j])
+                    if (elementOfArr1.Equals(elementOfArr2))
                     {
                         isElementExists = true;
-                    }                    
+                    }              
                 }
                 if (isElementExists == false)
-                {                                        
-                    count++;
+                {
                     Array.Resize(ref result, count);
-                    Console.WriteLine(result.Length);
-                    Console.WriteLine(result[i]);
-                    result[count] = array1[i];
-                }
-
+                    for (int r = 0; r < result.Length; r++)
+                    {
+                        result[r] = elementOfArr1;
+                    }
+                    count++;
+                }     
             }
             return result;
         }
-
         public static IList UniqueNamesWithCollections(ArrayList names1, ArrayList names2)
         {
             Boolean isNameExists;
@@ -69,7 +69,6 @@ namespace Task2
                 }
             }
             return resultList;
-
         }
     }
 }
