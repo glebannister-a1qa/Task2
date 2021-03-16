@@ -13,11 +13,11 @@ namespace Task2
             {
                 Console.WriteLine(element);
             } 
-            ArrayList arr1 = new ArrayList();
-            ArrayList arr2 = new ArrayList();
-            arr1.AddRange(new string [] { "Alex", "Dima", "Kate", "Galina", "Ivan" });
-            arr2.AddRange(new string[] { "Dima", "Ivan", "Kate" });
-            foreach(string element in UniqueNamesWithCollections(arr1, arr2))
+            ArrayList arrayList1 = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            arrayList1.AddRange(array1);
+            arrayList2.AddRange(array2);
+            foreach(string element in UniqueNamesWithCollections(arrayList1, arrayList2))
             {
                 Console.WriteLine(element);
             }
@@ -25,6 +25,7 @@ namespace Task2
         public static string[] UniqueNamesWithoutCollections(string [] names1, string[] names2)
         {
             int count = 0;
+            int namesCount = 0;
             string[] result = new string[count];
             Boolean isElementExists;
             foreach (string elementOfArr1 in names1)
@@ -39,12 +40,13 @@ namespace Task2
                 }
                 if (isElementExists == false)
                 {
+                    count++;
                     Array.Resize(ref result, count);
-                    for (int r = 0; r < result.Length; r++)
+                    for (int r = namesCount; r < result.Length; r++)
                     {
                         result[r] = elementOfArr1;
                     }
-                    count++;
+                    namesCount++;
                 }     
             }
             return result;
